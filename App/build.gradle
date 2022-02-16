@@ -42,14 +42,4 @@ task createChecksums(type: Checksum, dependsOn: 'generateFiles') {
   checksumAlgorithm.set(Checksum.Algorithm.SHA512)
   appendFileNameToChecksum.set(true)
 }
-plugins {
-  id "org.sonarqube" version "3.3"
-}
 
-sonarqube {
-  properties {
-    property "sonar.projectKey", "adroius_Grupo7CS"
-    property "sonar.organization", "adroius"
-    property "sonar.host.url", "https://sonarcloud.io"
-  }
-}
