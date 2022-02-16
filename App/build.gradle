@@ -26,3 +26,19 @@ sonarqube {
     property "sonar.host.url", "https://sonarcloud.io"
   }
 }
+plugins {
+    id 'org.gradle.crypto.checksum' version '1.4.0'
+}
+
+import org.gradle.crypto.checksum.Checksum
+
+task generateFiles {
+  // Generates some files.
+}
+
+task createChecksums(type: Checksum, dependsOn: 'generateFiles') {
+  inputFiles.setFrom(generateFiles.outputs.files)
+  outputDirectory.set(layout.buildDirectory.dir("foo/checksums"))
+  checksumAlgorithm.set(Checksum.Algorithm.SHA512)
+  appendFileNameToChecksum.set(true)
+}
